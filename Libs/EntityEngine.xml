@@ -1,0 +1,482 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EntityEngine</name>
+    </assembly>
+    <members>
+        <member name="T:EntityEngine.ComponentArray`1">
+            <summary>
+            Represents a sparse array for <see cref="T:EntityEngine.IComponent"/>.
+            </summary>
+            <typeparam name="T">The type of <see cref="T:EntityEngine.IComponent"/> to store.</typeparam>
+            <remarks>Simplified version of: 
+            https://github.com/Spy-Shifty/BrokenBricksECS/blob/master/ECS/Core/ComponentArray.cs </remarks>
+        </member>
+        <member name="P:EntityEngine.ComponentArray`1.Item(System.Int32)">
+            <summary>
+            Gets the element at the given index.
+            </summary>
+            <param name="index">The index to access.</param>
+            <returns>The element at the given index.</returns>
+        </member>
+        <member name="P:EntityEngine.ComponentArray`1.Length">
+            <summary>
+            Gets the length of the array.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new <see cref="T:EntityEngine.ComponentArray`1"/>
+            with an initial size of 8.
+            </summary>
+            <param name="size"></param>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.Add(EntityEngine.Entity,EntityEngine.IComponent)">
+            <summary>
+            Adds an entity with a component to the array.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="component">The component.</param>
+            <returns>True if successful, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.Add(EntityEngine.Entity,`0)">
+            <summary>
+            Adds an entity with a component to the array.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="component">The component.</param>
+            <returns>True if successful, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.Remove(EntityEngine.Entity)">
+            <summary>
+            Removes a component from a given entity
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>True if successful, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.Contains(EntityEngine.Entity)">
+            <summary>
+            Checks to see if an entity exists.
+            </summary>
+            <param name="entity">The entity to find.</param>
+            <returns>True if found, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.Update(EntityEngine.Entity,`0)">
+            <summary>
+            Updates a <see cref="T:EntityEngine.IComponent"/> to a 
+            given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="component">The component.</param>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.Clear">
+            <summary>
+            Clears the array.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.GetEntity(System.Int32)">
+            <summary>
+            Gets an entity from the array.
+            </summary>
+            <param name="index">The index to access.</param>
+            <returns>The entity.</returns>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.GetComponent(EntityEngine.Entity)">
+            <summary>
+            Gets a <see cref="T:EntityEngine.IComponent"/> from an entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>An <see cref="T:EntityEngine.IComponent"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.ComponentArray`1.ResizeArray(System.Int32)">
+            <summary>
+            Resizes the internal arrays to a given size.
+            </summary>
+            <param name="newSize">The new size.</param>
+        </member>
+        <member name="T:EntityEngine.Managers.ComponentManager">
+            <summary>
+            Handles the storage of <see cref="T:EntityEngine.IComponent"/> and provides
+            functionality to add/get/remove <see cref="T:EntityEngine.IComponent"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.#ctor">
+            <summary>
+            Initializes a new <see cref="T:EntityEngine.Managers.ComponentManager"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.AddComponent``1(EntityEngine.Entity,``0)">
+            <summary>
+            Adds a <see cref="T:EntityEngine.IComponent"/> to a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+            <param name="component">The component.</param>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.RemoveComponent``1(EntityEngine.Entity)">
+            <summary>
+            Removes a <see cref="T:EntityEngine.IComponent"/> from an <see cref="T:EntityEngine.Entity"/>. 
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.RemoveAllComponents(EntityEngine.Entity)">
+            <summary>
+            Removes all components from a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.GetComponent``1(EntityEngine.Entity)">
+            <summary>
+            Gets a <see cref="T:EntityEngine.IComponent"/> from an <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+            <returns>An <see cref="T:EntityEngine.IComponent"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.GetComponents``1">
+            <summary>
+            Gets a <see cref="T:EntityEngine.ComponentArray`1"/> of a given
+            component type.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <returns>A <see cref="T:EntityEngine.ComponentArray`1"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.HasComponent``1(EntityEngine.Entity)">
+            <summary>
+            Checks to see if an <see cref="T:EntityEngine.Entity"/> has a component.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+            <returns>True if has component, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.ComponentManager.GetComponentArray``1(System.Boolean)">
+            <summary>
+            Gets a <see cref="T:EntityEngine.Managers.IComponentArray"/> of a component type.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="create">Create array if one doesnt exist.</param>
+            <returns>A <see cref="T:EntityEngine.Managers.IComponentArray"/>.</returns>
+        </member>
+        <member name="T:EntityEngine.Managers.EntityManager">
+            <summary>
+            Handles the creation and deletion of <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.Managers.EntityManager.Entities">
+            <summary>
+            Gets a list of all entities.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.EntityManager.#ctor">
+            <summary>
+            Initializes a new <see cref="T:EntityEngine.Managers.EntityManager"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.EntityManager.Create">
+            <summary>
+            Creates a new <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <returns>A new <see cref="T:EntityEngine.Entity"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.EntityManager.Destroy(EntityEngine.Entity)">
+            <summary>
+            Destroys a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity to destroy.</param>
+        </member>
+        <member name="M:EntityEngine.Managers.EntityManager.Contains(EntityEngine.Entity)">
+            <summary>
+            Checks to see if a give <see cref="T:EntityEngine.Entity"/> exists.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EntityEngine.Managers.IComponentArray">
+            <summary>
+            Represents an interface for component arrays.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.IComponentArray.Add(EntityEngine.Entity,EntityEngine.IComponent)">
+            <summary>
+            Adds a <see cref="T:EntityEngine.IComponent"/> to an
+            <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="component">The component."/></param>
+            <returns>True if successful, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.IComponentArray.Remove(EntityEngine.Entity)">
+            <summary>
+            Removes a <see cref="T:EntityEngine.IComponent"/> from
+            an <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>True if successful, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.IComponentArray.Contains(EntityEngine.Entity)">
+            <summary>
+            Checks if an <see cref="T:EntityEngine.Entity"/> exists.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>True if found, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.IComponentArray.Clear">
+            <summary>
+            Clears all elements.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.IComponentArray.GetEntity(System.Int32)">
+            <summary>
+            Gets an <see cref="T:EntityEngine.Entity"/> from the array.
+            </summary>
+            <param name="index">The entity index.</param>
+            <returns>An entity at the given index.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.IComponentArray.GetComponent(EntityEngine.Entity)">
+            <summary>
+            Gets a <see cref="T:EntityEngine.IComponent"/> from
+            a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>A component from a given entity.</returns>
+        </member>
+        <member name="T:EntityEngine.Managers.SystemManager">
+            <summary>
+            Handles the Updating of all <see cref="T:EntityEngine.EntitySystem"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.SystemManager.#ctor">
+            <summary>
+            Initializes a new <see cref="T:EntityEngine.Managers.SystemManager"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Managers.SystemManager.AddSystem(EntityEngine.Context,System.Type)">
+            <summary>
+            Adds a new <see cref="T:EntityEngine.EntitySystem"/> of a given type with a <see cref="T:EntityEngine.Context"/> attached.
+            </summary>
+            <param name="context">The <see cref="T:EntityEngine.Context"/> to attach.</param>
+            <param name="systemType">The type of <see cref="T:EntityEngine.EntitySystem"/>.</param>
+            <returns>A new <see cref="T:EntityEngine.EntitySystem"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.SystemManager.GetSystem(System.Type)">
+            <summary>
+            Gets an <see cref="T:EntityEngine.EntitySystem"/> of a given type.
+            </summary>
+            <param name="systemType">The type of <see cref="T:EntityEngine.EntitySystem"/>.</param>
+            <returns>An <see cref="T:EntityEngine.EntitySystem"/> if found, or null.</returns>
+        </member>
+        <member name="M:EntityEngine.Managers.SystemManager.RemoveSytsem(System.Type)">
+            <summary>
+            Removes an <see cref="T:EntityEngine.EntitySystem"/> of a given type.
+            </summary>
+            <param name="systemType">The type of <see cref="T:EntityEngine.EntitySystem"/>.</param>
+        </member>
+        <member name="M:EntityEngine.Managers.SystemManager.UpdateSystems(System.Single)">
+            <summary>
+            Updates all stored <see cref="T:EntityEngine.EntitySystem"/>s.
+            </summary>
+            <param name="deltaTime">The amount of time to update.</param>
+        </member>
+        <member name="T:EntityEngine.Context">
+            <summary>
+             Represents the core context of the engine and provides 
+             functionality to create/remove <see cref="T:EntityEngine.Entity"/>, 
+             <see cref="T:EntityEngine.IComponent"/> and <see cref="T:EntityEngine.EntitySystem"/>.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.Context.EntityManager">
+            <summary>
+            Gets the <see cref="P:EntityEngine.Context.EntityManager"/>.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.Context.ComponentManager">
+            <summary>
+            Gets the <see cref="P:EntityEngine.Context.ComponentManager"/>.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.Context.SystemManager">
+            <summary>
+            Gets the <see cref="P:EntityEngine.Context.SystemManager"/>.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.Context.Entities">
+            <summary>
+            Gets the list of all active <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Context.#ctor">
+            <summary>
+            Initializes a new <see cref="T:EntityEngine.Context"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Context.Update(System.Single)">
+            <summary>
+            Updates the engine.
+            </summary>
+            <param name="deltaTime">The amount of time to update.</param>
+        </member>
+        <member name="M:EntityEngine.Context.CreateEntity">
+            <summary>
+            Creates and initializes a new <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <returns>A new <see cref="T:EntityEngine.Entity"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Context.DestroyEntity(EntityEngine.Entity)">
+            <summary>
+            Removes a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="entity">The entity to remove.</param>
+        </member>
+        <member name="M:EntityEngine.Context.DestroyNow(EntityEngine.Entity)">
+            <summary>
+            Removes a given <see cref="T:EntityEngine.Entity"/> immediately.
+            </summary>
+            <param name="entity">The entity to remove.</param>
+        </member>
+        <member name="M:EntityEngine.Context.AddComponent``1(EntityEngine.Entity,``0)">
+            <summary>
+            Adds a new <see cref="T:EntityEngine.Managers.IComponentArray"/> to a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <typeparam name="T">The type of componenent.</typeparam>
+            <param name="entity">The entity.</param>
+            <param name="component">The component.</param>
+        </member>
+        <member name="M:EntityEngine.Context.GetComponent``1(EntityEngine.Entity)">
+            <summary>
+            Gets a <see cref="T:EntityEngine.IComponent"/> from a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+            <returns>The <see cref="T:EntityEngine.IComponent"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Context.GetComponents``1">
+            <summary>
+            Gets a <see cref="T:EntityEngine.ComponentArray`1"/> of a given <see cref="T:EntityEngine.IComponent"/>.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <returns>The <see cref="T:EntityEngine.ComponentArray`1"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Context.RemoveComponent``1(EntityEngine.Entity,``0)">
+            <summary>
+            Removes a <see cref="T:EntityEngine.IComponent"/> from a given <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+            <param name="component">The component.</param>
+        </member>
+        <member name="M:EntityEngine.Context.HasComponent``1(EntityEngine.Entity)">
+            <summary>
+            Checks to see if a given <see cref="T:EntityEngine.Entity"/> has a type of
+            <see cref="T:EntityEngine.IComponent"/>.
+            </summary>
+            <typeparam name="T">The type of component.</typeparam>
+            <param name="entity">The entity.</param>
+            <returns>True if entity has component, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Context.AddSystem``1">
+            <summary>
+            Adds an <see cref="T:EntityEngine.EntitySystem"/> to the <see cref="T:EntityEngine.Context"/>.
+            </summary>
+            <typeparam name="T">The type of <see cref="T:EntityEngine.EntitySystem"/>.</typeparam>
+            <returns>The type of <see cref="T:EntityEngine.EntitySystem"/>.</returns>
+        </member>
+        <member name="M:EntityEngine.Context.GetSystem``1">
+            <summary>
+            Gets an <see cref="T:EntityEngine.EntitySystem"/> of a given type.
+            </summary>
+            <typeparam name="T">The type of <see cref="T:EntityEngine.EntitySystem"/>.</typeparam>
+            <returns>An <see cref="T:EntityEngine.EntitySystem"/> if found, or null.</returns>
+        </member>
+        <member name="M:EntityEngine.Context.RemoveSytsem``1">
+            <summary>
+            Removes an <see cref="T:EntityEngine.EntitySystem"/> of a given type.
+            </summary>
+            /// <typeparam name="T">The type of <see cref="T:EntityEngine.EntitySystem"/> to remove.</typeparam>
+        </member>
+        <member name="T:EntityEngine.IComponent">
+            <summary>
+            Represents a generic component, where all of the data required for an <see cref="T:EntityEngine.Entity"/> is stored.
+            </summary>
+        </member>
+        <member name="T:EntityEngine.Entity">
+            <summary>
+            Base class that represents an object.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.Entity.Id">
+            <summary>
+            The identifier of this <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+        </member>
+        <member name="M:EntityEngine.Entity.#ctor(System.Int32)">
+            <summary>
+            Initializes a new <see cref="T:EntityEngine.Entity"/> with an Id.
+            </summary>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:EntityEngine.Entity.op_Equality(EntityEngine.Entity,EntityEngine.Entity)">
+            <summary>
+            Compares whether two <see cref="T:EntityEngine.Entity"/> instances are equal.
+            </summary>
+            <param name="a"><see cref="T:EntityEngine.Entity"/> instance on the left side of the equal comparison.</param>
+            <param name="b"><see cref="T:EntityEngine.Entity"/> instance on the right side of the equal comparison.</param>
+            <returns>True if both instances are equal, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Entity.op_Inequality(EntityEngine.Entity,EntityEngine.Entity)">
+            <summary>
+            Compares whether two <see cref="T:EntityEngine.Entity"/> instances are not equal.
+            </summary>
+            <param name="a"><see cref="T:EntityEngine.Entity"/> instance on the left side of the not equal comparison.</param>
+            <param name="b"><see cref="T:EntityEngine.Entity"/> instance on the right side of the not equal comparison.</param>
+            <returns>True if both instances are not equal, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Entity.Equals(EntityEngine.Entity)">
+            <summary>
+            Compares whether this <see cref="T:EntityEngine.Entity"/> is equal to another <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <param name="other">The <see cref="T:EntityEngine.Entity"/> to compare.</param>
+            <returns>True if both instances are equal, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Entity.GetHashCode">
+            <summary>
+            Gets the hashcode of this <see cref="T:EntityEngine.Entity"/> instance.
+            </summary>
+            <returns>The hashcode.</returns>
+        </member>
+        <member name="M:EntityEngine.Entity.Equals(System.Object)">
+            <summary>
+            /Compares whether this <see cref="T:EntityEngine.Entity"/> is equal to another <see cref="T:System.Object"/>.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare.</param>
+            <returns>True if both instances are equal, otherwise false.</returns>
+        </member>
+        <member name="M:EntityEngine.Entity.ToString">
+            <summary>
+            Gets a <see cref="T:System.String"/> representation of this <see cref="T:EntityEngine.Entity"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EntityEngine.EntitySystem">
+            <summary>
+            An abstract base class, where the <see cref="T:EntityEngine.IComponent"/> data is processed.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.EntitySystem.Context">
+            <summary>
+            Gets/Sets the <see cref="P:EntityEngine.EntitySystem.Context"/>.
+            </summary>
+        </member>
+        <member name="P:EntityEngine.EntitySystem.Toggle">
+            <summary>
+            Toggles system On/Off
+            </summary>
+        </member>
+        <member name="M:EntityEngine.EntitySystem.Update(System.Single)">
+            <summary>
+            Updates the <see cref="T:EntityEngine.EntitySystem"/>.
+            </summary>
+            <param name="deltaTime">The amount of time to update.</param>
+        </member>
+    </members>
+</doc>
